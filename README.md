@@ -21,9 +21,9 @@ The project aims to provide a comprehensive system for managing various tasks re
 
 ## Class Diagram
 
-![Class Diagram](images/Class diagram.png)
-
 The class diagram illustrates the structure of the entities involved in the project, including Enseignant, Module, Filiere, and Administrator.
+
+![Class Diagram](images/Class%20diagram.png)
 
 ## Backend Setup
 
