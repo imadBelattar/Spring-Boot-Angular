@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/v1/api/administrateur")
+@RequestMapping("/api/v1/administrateur")
 public class AdministrateurController {
     private final EnseignantService enseignantService;
 
