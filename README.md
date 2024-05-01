@@ -50,6 +50,7 @@ The Angular frontend for this project is under development. Once available, foll
 ## Contributors
 
 - Imad BELATTAR
+- Haitam CHEFIRA
 
 ## License
 
