@@ -1,11 +1,11 @@
 package com.masterISI.services;
 
-import com.masterISI.repositories.ModuleRepository;
+import com.masterISI.repositories.AdministrateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ModuleService {
+public class AdministrateurService {
     @Autowired
-    ModuleRepository moduleRepository;
+    AdministrateurRepository administrateurRepository;
 }

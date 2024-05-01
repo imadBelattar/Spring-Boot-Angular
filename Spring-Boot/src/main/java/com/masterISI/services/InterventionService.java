@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class InterventionService {
     @Autowired
-    private InterventionRepository interventionRepository;
+    InterventionRepository interventionRepository;
 }

@@ -1,5 +1,6 @@
 package com.masterISI.controllers.AdministrateurController;
 
+import com.masterISI.services.AdministrateurService;
 import com.masterISI.services.EnseignantService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,5 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/administrateur")
 public class AdministrateurController {
     private final EnseignantService enseignantService;
+    private final AdministrateurService administrateurService;
+
+
 
 }

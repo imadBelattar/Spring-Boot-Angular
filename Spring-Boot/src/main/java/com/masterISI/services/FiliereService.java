@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 public class FiliereService {
     @Autowired
-    private FiliereRepository filiereRepository;
+    FiliereRepository filiereRepository;
 }
