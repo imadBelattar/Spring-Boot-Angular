@@ -1,0 +1,22 @@
+<div class="wrapper flex gap-60">
+    <div class="login-left-section">
+        <img src="assets/images/enseignant-administrateur.png" alt="login-image">
+        <h1 class="roboto-bold">Enseignants and administrators,</h1>
+        <p class="roboto-regular">your dashboard awaits! Please log in to access.</p>
+    </div>
+    <div class="login-container">
+        <h2 class="roboto-regular">sign in</h2>
+        <form>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" [(ngModel)]="user.email" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" [(ngModel)]="user.password" id="password" name="password" class="form-control" required>
+            </div>
+            <app-button buttonType="submit" label="login" color="primary"></app-button>
+        </form>
+    </div>
+</div>
+

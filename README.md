@@ -1,4 +1,4 @@
-# Spring Boot Angular Project
+# Spring Boot - Angular Project 
 
 This project is a Spring Boot backend combined with an Angular frontend for managing interventions, assignments, and other operations related to academic scheduling.
 
@@ -18,6 +18,7 @@ The project aims to provide a comprehensive system for managing various tasks re
 - **Enseignant Dashboard**: Enseignants have limited access and can view lists of available filieres and their own interventions at modules.
 - **User Authentication**: Login functionality with authentication and authorization to ensure secure access to the system.
 - **CRUD Operations**: Support for creating, reading, updating, and deleting interventions, filieres, modules, and enseignants.
+
 
 ## Class Diagram
 
@@ -43,6 +44,7 @@ The project comes pre-configured with database settings. Follow these steps to c
 CREATE DATABASE gestionchargehoraire;
 ```
 
+
 ## Frontend Setup
 
 The Angular frontend for this project is under development. Once available, follow the instructions in the `gestionHoraire-Angular` folder to set up and run the frontend.
@@ -55,4 +57,5 @@ The Angular frontend for this project is under development. Once available, foll
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
