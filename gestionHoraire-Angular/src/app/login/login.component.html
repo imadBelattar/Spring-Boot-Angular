@@ -6,15 +6,17 @@
     </div>
     <div class="login-container">
         <h2 class="roboto-regular">sign in</h2>
-        <form>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" [(ngModel)]="user.email" id="username" name="username" class="form-control" required>
+        <form (ngSubmit)="onSubmit($event)">
+            <div class="input-control">
+                <app-input label="Email" type="email" (ValueChange)="onEmailChange($event)" placeholder="Enter your email address" hint="example@uca.ac.ma"></app-input>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" [(ngModel)]="user.password" id="password" name="password" class="form-control" required>
+            <div class="input-control">
+                <app-input label="Password" type="password" (ValueChange)="onPasswordChange($event)" placeholder="Enter your password"  hint=""></app-input>
             </div>
+                <p *ngIf="invalidCredentialsFormat else validCredentials" [style.color]="'red'" class="roboto-regular">{{invalidCredentialsFormat}}</p>
+                <ng-template #validCredentials>
+                    <p class="roboto-regular">Please enter your credentials</p>
+                </ng-template>
             <app-button buttonType="submit" label="login" color="primary"></app-button>
         </form>
     </div>
