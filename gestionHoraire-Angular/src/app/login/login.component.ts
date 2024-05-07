@@ -17,9 +17,13 @@ export class LoginComponent {
     email: '',
     password: ''
   }
+  constructor(){}
+
+
   invalidCredentialsFormat: string = '';
   onSubmit(event: any) {
     event.preventDefault();
+    console.log('Form submitted');
     if(this.user.email.length === 0 || this.user.password.length === 0) {
       this.invalidCredentialsFormat = 'Password and email are required';
       console.log(this.invalidCredentialsFormat);
@@ -36,7 +40,6 @@ export class LoginComponent {
         // Proceed with form submission or other actions
     }
   }
-
   onEmailChange(email: string) {
     this.user.email = email;
   }

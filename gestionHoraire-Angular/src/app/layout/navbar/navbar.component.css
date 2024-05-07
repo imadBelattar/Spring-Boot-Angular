@@ -1,0 +1,23 @@
+nav{
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+   /*  opacity: 0.3; */
+}
+nav img{
+    width: 200px;
+    transition: all 0.3s ease;
+}
+@media (max-width: 665px){
+    nav{
+        text-align: center;
+    }
+    nav img{
+        width: 170px;
+    }
+}

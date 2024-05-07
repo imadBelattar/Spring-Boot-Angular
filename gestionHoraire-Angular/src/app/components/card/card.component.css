@@ -1,0 +1,18 @@
+.matCard{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #EEF7FF;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+
+}
+.matCard-header{
+    margin-bottom: 10px;
+}
+button{
+    border: none;
+}
+.card-buttons{
+    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+}
