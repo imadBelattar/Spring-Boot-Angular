@@ -1,10 +1,10 @@
 <div class="sidenav">
-    <div class="sidenav-header">
+    <div class="sidenav-header center">
         <div class="sidenav-header-logo">
-            <img src="assets/images/logo.png" alt="logo">
+            <img src="assets/images/man.png" width="45" alt="logo">
         </div>
         <div class="sidenav-header-title">
-            <h2>{{userRole}}</h2>
+            {{userName}}
         </div>
     </div>
     <div class="sidenav-content">
@@ -15,7 +15,9 @@
                         <mat-icon> 
                             dashboard
                         </mat-icon>
-                        tableau de bord
+                        <div class="side-a-text">
+                            tableau de bord
+                        </div>
                     </div>
                 </a>
             </li>
@@ -25,17 +27,21 @@
                         <mat-icon> 
                             dashboard
                         </mat-icon>
-                        tableau de bord
+                        <div class="side-a-text">
+                            tableau de bord
+                        </div>
                     </div>
                 </a>
-            </li>    
+            </li>
             <li>
                 <a routerLink="/adminDashboard" routerLinkActive="active">
                     <div class="side-li">
                         <mat-icon> 
                             dashboard
                         </mat-icon>
-                        tableau de bord
+                        <div class="side-a-text">
+                            tableau de bord
+                        </div>
                     </div>
                 </a>
             </li>

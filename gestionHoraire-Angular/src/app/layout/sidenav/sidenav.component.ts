@@ -11,8 +11,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sidenav.component.css'
 })
 export class SidenavComponent implements OnInit{
-  userRole!: string;
+  userName!: string;
   ngOnInit(): void {
-    this.userRole = localStorage.getItem('role') || 'le role d\'utilisateur';
+    this.userName = localStorage.getItem('username') || 'le nom d\'utilisateur';
   }
 }
