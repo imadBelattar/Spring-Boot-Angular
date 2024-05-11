@@ -1,0 +1,32 @@
+
+.main-content{
+    padding: 30px;
+    width: 100%;
+    margin-top: 60px;
+    padding-left: 300px;
+    transition: padding-left 0.5s ease, margin-top 0.5s ease, padding-right 0.5s ease;
+    padding-right: 50px;
+    overflow-y: auto;
+}
+.main-container{
+    display: flex;
+    height: 100vh;
+    overflow-y: hidden;
+    background-color: #edf1f7;
+}
+@media (max-width: 665px){
+    .main-content{
+        padding-left: 160px;
+        padding-right: 5px;
+        margin-top: 50px;
+    }
+}
+@media (max-width: 450px){
+    .main-content{
+        padding-left: 30px;
+        padding-right: 30px;
+
+    }
+}
+
+

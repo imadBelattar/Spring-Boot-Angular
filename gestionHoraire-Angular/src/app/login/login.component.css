@@ -8,7 +8,7 @@
 }
 .wrapper{
     box-sizing: border-box;
-    background-color:  #f3f8ff;
+    background-color:  #EEF7FF;
     height: 100vh;
 }
 .login-left-section{
@@ -25,12 +25,13 @@
     margin-bottom: 15px;
 }
 .login-container{
-    width: 50%;
+    width: 45%;
     border: 1px solid #ccc;
-    padding: 30px;
-    border-radius: 5px;
+    padding: 40px;
+    border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    background: #fff;
+    background: #ffffffcc;
+    padding-bottom: 20px;
 }
 .login-container h2{
     text-align: center;
@@ -40,7 +41,12 @@
 .login-container *{
     margin: 10px 0;
 }
-.login-container input{
-    padding: 15px;
-    width: 100%;
+.input-control{
+    margin: 50px 0 !important;
+}
+.input-control:nth-child(2){
+    margin-bottom: 0 !important;
+}
+p{
+    margin: 15px 7px !important;
 }

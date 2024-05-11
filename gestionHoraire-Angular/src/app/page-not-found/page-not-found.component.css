@@ -1,3 +1,17 @@
-h1{
+.page-not-found-box{
+    border: 2px solid #ffa70e;
+    border-top: 30px solid #ffa70e;
+    border-radius: 10px;
+    width: 60%;
+    padding: 10px;
+    margin: 0 auto;
     text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    color: #ce6700;
+}
+
+.not-found-container{
+    height: 100vh;
 }

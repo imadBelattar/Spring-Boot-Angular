@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline">
+    <mat-label>{{label}}</mat-label>
+    <input matInput [type]="type" [(ngModel)]="inputValue" [placeholder]="placeholder" (input)="onInputChange()">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    <mat-hint [style.color]="hintColor">{{hint}}</mat-hint>
+</mat-form-field>
