@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../components/button/button.component';
 import { InputComponent } from '../components/input/input.component';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { AuthService } from '../services/authService/auth.service';
 
 
 @Component({
@@ -13,38 +14,44 @@ import { CommonModule } from '@angular/common';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  user = {
-    email: '',
-    password: ''
-  }
-  constructor(){}
+  constructor(private authService: AuthService){}
 
 
+  user: {email: string, password: string} = {email: '', password: ''};
   invalidCredentialsFormat: string = '';
-  onSubmit(event: any) {
-    event.preventDefault();
-    console.log('Form submitted');
-    if(this.user.email.length === 0 || this.user.password.length === 0) {
-      this.invalidCredentialsFormat = 'Password and email are required';
-      console.log(this.invalidCredentialsFormat);
-      return;
-    } 
-    if (!this.user.email.endsWith('@uca.ac.ma') || !(this.user.password.length >= 8) ){
-      this.invalidCredentialsFormat = 'Invalid email or password';
-      console.log(this.invalidCredentialsFormat);
-    } else {
-        //remove white spaces from email
-        this.user.email = this.user.email.split(' ').join('');
-        console.log('Email:', this.user.email);
-        console.log('Password:', this.user.password);
-        // Proceed with form submission or other actions
-    }
+  inputsIconStyle: string = '';
+
+  onSubmit(event: any): any{
+      event.preventDefault();
+      console.log('Form submitted');
+      if(this.user.email.length === 0 || this.user.password.length === 0) {
+        this.inputsIconStyle = 'color: red;';
+        this.invalidCredentialsFormat = 'Le mot de passe et l\'email sont nécessaires';
+        return;
+      } 
+      if (!this.user.email.endsWith('@uca.ac.ma')){
+        this.inputsIconStyle = 'color: red;';
+        this.invalidCredentialsFormat = 'Email non valide';
+        return;
+      }
+      this.authService.login(this.user.email, this.user.password);
+      this.clearAll();
+
+
+
   }
   onEmailChange(email: string) {
     this.user.email = email;
   }
   onPasswordChange(password: string) {
     this.user.password = password;
+  }
+  clearAll() {
+    this.invalidCredentialsFormat = '';
+    this.inputsIconStyle = '';
+    this.user.email = '';
+    this.user.password = '';
+    
   }
 
 }

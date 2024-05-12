@@ -1,14 +1,16 @@
-.flex{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.form-header{
+    gap: 10px;
 }
+.login-icon{
+    width: 60px;
+}
+
 .gap-60{
     gap: 6rem;
 }
 .wrapper{
     box-sizing: border-box;
-    background-color:  #EEF7FF;
+    background-color:  #f1f1f13a;
     height: 100vh;
 }
 .login-left-section{
@@ -49,4 +51,42 @@
 }
 p{
     margin: 15px 7px !important;
+}
+
+
+
+
+@media (max-width: 767px){
+    .login-left-section{
+        display: none !important;
+    }
+    .login-container{
+        width: 100%;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    .wrapper{
+        padding: 20px;
+        background-color: rgb(255, 255, 255);
+        height: auto;
+        padding-top: 50px;
+    }
+    form{
+        padding: 5px 20px;
+    }
+    app-button{
+        width: 100%;
+    }
+    .form-header{
+        flex-direction: column;
+        margin: 0 !important;
+    }
+    .form-header *{
+        margin: 0 !important;
+    }
+    .login-icon{
+        width: 70px;
+    }
 }

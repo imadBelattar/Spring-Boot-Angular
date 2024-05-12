@@ -1,23 +1,26 @@
 <div class="wrapper flex gap-60">
     <div class="login-left-section">
         <img src="assets/images/enseignant-administrateur.png" alt="login-image">
-        <h1 class="roboto-bold">Enseignants and administrators,</h1>
-        <p class="roboto-regular">your dashboard awaits! Please log in to access.</p>
+        <h1>Enseignants et administrateurs,</h1>
+        <p>Votre dashboard vous attend ! Veuillez vous connecter pour y accéder.</p>
     </div>
     <div class="login-container">
-        <h2 class="roboto-regular">sign in</h2>
+        <div class="form-header flex">
+            <img class="login-icon" src="assets/images/login-icon.png" alt="app-icon">
+            <div class="roboto-regular" style="font-size: 20px; color: #002743;">Se connecter au plateforme</div>
+        </div>
         <form (ngSubmit)="onSubmit($event)">
             <div class="input-control">
-                <app-input label="Email" type="email" (ValueChange)="onEmailChange($event)" placeholder="Enter your email address" hint="example@uca.ac.ma"></app-input>
+                <app-input matIconTitle="email" label="Addresse email" [matIconStyle]="inputsIconStyle" type="email" [inputValue]="user.email" (ValueChange)="onEmailChange($event)" placeholder="Entrer votre addresse email" hint="exemple@uca.ac.ma"></app-input>
             </div>
             <div class="input-control">
-                <app-input label="Password" type="password" (ValueChange)="onPasswordChange($event)" placeholder="Enter your password"  hint=""></app-input>
+                <app-input matIconTitle="lock_outline" label="Mot de passe" [matIconStyle]="inputsIconStyle" type="password" [inputValue]="user.password" (ValueChange)="onPasswordChange($event)" placeholder="Entrer votre mot de passe"  hint=""></app-input>
             </div>
-                <p *ngIf="invalidCredentialsFormat else validCredentials" [style.color]="'red'" class="roboto-regular">{{invalidCredentialsFormat}}</p>
+                <p *ngIf="invalidCredentialsFormat else validCredentials" [style.color]="'red'">{{invalidCredentialsFormat}}</p>
                 <ng-template #validCredentials>
-                    <p class="roboto-regular">Please enter your credentials</p>
+                    <p>Veuillez entrer vos informations</p>
                 </ng-template>
-            <app-button buttonType="submit" label="login" color="primary"></app-button>
+            <app-button buttonType="submit" label="Se connecter" color="primary" matIconTitle="login"></app-button>
         </form>
     </div>
 </div>

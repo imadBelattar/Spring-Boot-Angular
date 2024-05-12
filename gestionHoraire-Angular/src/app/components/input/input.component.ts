@@ -31,25 +31,18 @@ export class InputComponent {
   hint!: string;
   @Input()
   type!: string;
+  @Input()
+  matIconTitle!: string;
+  @Input()
+  matIconStyle!: string;
 
   hintColor: string = '';
 
+  @Input()
   inputValue: any;
 
   onInputChange() {
-    //validate the password
-    if(this.type === 'password') {
-      this.hintColor = 'red';
-    if(this.inputValue.length === 0) {
-      this.hint = this.label + ' is required';
-    } else if(this.inputValue.length > 0 && this.inputValue.length < 8) {
-      this.hint = 'at least 8 characters are required';
-    } else {
-      this.hintColor = 'green';
-      this.hint = 'good to go!';
-    }
-  }
-  this.ValueChange.emit(this.inputValue);
+    this.ValueChange.emit(this.inputValue);
   }
 
 

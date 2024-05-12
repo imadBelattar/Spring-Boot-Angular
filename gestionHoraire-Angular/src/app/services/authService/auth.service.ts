@@ -17,7 +17,7 @@ export class AuthService {
     console.log('Email:', email);
     console.log('Password:', password); 
     // Proceed with login
-    this.apiService.post('/login', {email, password}).subscribe((res: LoginResponse) => {
+    this.apiService.post('/auth/login', {email, password}).subscribe((res: LoginResponse) => {
       console.log('Response:', res);
       // Handle response ------------------------>------- ----- ---->
 

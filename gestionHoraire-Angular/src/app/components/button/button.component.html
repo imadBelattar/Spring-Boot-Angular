@@ -1,1 +1,6 @@
-<button [type]="buttonType" mat-flat-button [color]="color">{{label || "button"}}</button>
+<button [type]="buttonType" mat-flat-button [color]="color">
+    {{label || "button"}}
+    @if(matIconTitle){
+        <mat-icon matSuffix>{{matIconTitle}}</mat-icon>
+    }
+</button>
