@@ -4,6 +4,8 @@ import com.masterISI.models.Enseignant;
 import com.masterISI.services.AdministrateurService;
 import com.masterISI.services.EnseignantService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,7 +13,6 @@ import java.util.List;
 //this constructor below is required for the dependency injection of services to work
 @AllArgsConstructor
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/administrateur")
 public class AdministrateurController {
     private final EnseignantService enseignantService;
@@ -21,15 +22,26 @@ public class AdministrateurController {
     @PostMapping("/addEnseignant")
     public Enseignant addEnseignant() {
         Enseignant enseignant = new Enseignant();
-        enseignant.setEmail("imad.belattar.dev@gmail.com");
-        enseignant.setNom("Belattar");
-        enseignant.setPrenom("Imad");
+        enseignant.setEmail("test@uca.ac.ma");
+        enseignant.setNom("test");
+        enseignant.setPrenom("test");
+        enseignant.setPassword("test");
         return enseignantService.addEnseignant(enseignant);
     }
 
+    @GetMapping("/enseignant/{email}")
+    public ResponseEntity<?> getEnseignant(@PathVariable String email) {
+        System.out.println("request received at /enseignant/" + email);
+        Enseignant enseignant = enseignantService.getEnseignant(email);
+        return enseignant != null ? ResponseEntity.ok(enseignant) :  ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Enseignant not found");
+    }
+
     @GetMapping("/enseignants")
-    public List<Enseignant> getEnseignantsList() {
-        return enseignantService.getEnseignants();
+    public ResponseEntity<List<Enseignant>> getEnseignantsList() {
+        System.out.println("request received at /enseignants");
+        return ResponseEntity.ok(enseignantService.getEnseignants());
+
     }
 
 }

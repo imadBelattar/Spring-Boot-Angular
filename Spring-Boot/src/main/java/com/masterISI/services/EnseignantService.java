@@ -11,6 +11,10 @@ import java.util.List;
 public class EnseignantService {
     @Autowired
     EnseignantRepository enseignantRepository;
+
+    public Enseignant getEnseignant(String email) {
+        return enseignantRepository.findByEmail(email);
+    }
     public Enseignant addEnseignant(Enseignant enseignant) {
         Enseignant enseignantTest = enseignantRepository.findByEmail(enseignant.getEmail());
         if (enseignantTest != null) {

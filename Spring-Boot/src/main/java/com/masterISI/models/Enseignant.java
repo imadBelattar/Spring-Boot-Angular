@@ -10,12 +10,15 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "role", discriminatorType = DiscriminatorType.STRING, length = 20)
+@DiscriminatorValue("ENSEIGNANT")
 public class Enseignant {
     @Id
     private String email;
     private String nom;
     private String prenom;
+    private String password;
 
     @JsonBackReference
     @OneToMany(mappedBy = "enseignant")
