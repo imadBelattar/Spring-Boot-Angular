@@ -31,7 +31,6 @@ public class AdministrateurController {
 
     @GetMapping("/enseignant/{email}")
     public ResponseEntity<?> getEnseignant(@PathVariable String email) {
-        System.out.println("request received at /enseignant/" + email);
         Enseignant enseignant = enseignantService.getEnseignant(email);
         return enseignant != null ? ResponseEntity.ok(enseignant) :  ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Enseignant not found");
@@ -39,9 +38,12 @@ public class AdministrateurController {
 
     @GetMapping("/enseignants")
     public ResponseEntity<List<Enseignant>> getEnseignantsList() {
-        System.out.println("request received at /enseignants");
         return ResponseEntity.ok(enseignantService.getEnseignants());
 
     }
 
+    @GetMapping("/interventions")
+    public ResponseEntity<?> getInterventions() {
+        return ResponseEntity.ok(administrateurService.getAllInterventions());
+    }
 }

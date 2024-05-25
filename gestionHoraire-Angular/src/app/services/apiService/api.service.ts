@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,26 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient) { }
 
-  get<T>(path: string): Observable<T> {
-    return this.httpClient.get<T>(`${this.apiUrl}${path}`);
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `An error occurred: ${error.error.message}`;
+    } else {
+      errorMessage = `Backend returned code ${error.status}, body was: ${error.message}`;
+    }
+    return throwError(() => errorMessage);
   }
 
-  post(path: string, body: any): Observable<any> {
-    return this.httpClient.post<any>(`${this.apiUrl}${path}`, body);
+
+  get<T>(path: string): Observable<T> {
+    return this.httpClient.get<T>(`${this.apiUrl}${path}`).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+  post<T>(path: string, body: any): Observable<T> {
+    return this.httpClient.post<T>(`${this.apiUrl}${path}`, body).pipe(
+      catchError(this.handleError)
+    );
   }
 }

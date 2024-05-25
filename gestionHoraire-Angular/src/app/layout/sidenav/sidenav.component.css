@@ -25,7 +25,6 @@ ul{
     margin: 10px 0;
     padding: 6px;
     display: flex;
-    justify-content: center;
     gap: 20px;
     align-items: center;
     text-align: center;
