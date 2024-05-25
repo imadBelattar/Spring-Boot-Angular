@@ -16,3 +16,6 @@ button{
     display: flex;
     justify-content: space-between;
 }
+p{
+    margin-top: 12px;
+}
