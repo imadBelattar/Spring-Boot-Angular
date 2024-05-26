@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content class="mat-typography">
+ @for(content of data.dialogContents; track $index){
+    <h3>{{content.h3}}</h3>
+    @for(p of content.paragraphs; track $index){
+        <p>{{p}}</p>
+    }
+ }
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button  mat-dialog-close>Cancel</button>
+  <button mat-button color="warn" [mat-dialog-close]="true" >
+        {{data.mainButtonText}}
+        <mat-icon>delete</mat-icon>
+  </button>
+  
+</mat-dialog-actions>

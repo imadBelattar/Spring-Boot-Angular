@@ -5,7 +5,7 @@
         <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
       }
     </mat-card-header>
-    <img mat-card-image src="assets\images\intervention.png" alt="Intervention" height="200">
+    <img mat-card-image [src]="imageSrc" alt="Intervention" height="190" (error)="onError($event)">
     <mat-card-content>
         @for (pElement of pElementsContent; track $index) {
             <p>{{pElement}}</p>
@@ -14,7 +14,7 @@
     <mat-card-actions  align="end">
         @if(wantButtons){
         <div class="card-buttons">
-            <button mat-stroked-button color="warn">Supprimer<mat-icon>delete</mat-icon></button>
+            <button mat-stroked-button color="warn" mat-button (click)="openDialog()">Supprimer<mat-icon>delete</mat-icon></button>
             <button mat-stroked-button color="primary">Modifier<mat-icon>edit</mat-icon></button>
         </div>
         }
