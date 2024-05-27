@@ -1,6 +1,16 @@
+<app-popup-message [message]="'message fgsdfgsfds sfsdfsdf'"></app-popup-message>
+@if(getMessage !== ''){
+    <app-popup-message [message]="message"></app-popup-message>
+}
 <div class="dashboard-container">
-    @for (interv of interventions; track $index){
-        
-            <app-card [imageSrc]='"assets/images/Modules/" + interv.moduleIntitule + ".jpg"' [title] = "interv.intitule" [subtitles]="['Enseignant: '+ interv.enseignantNom, 'Module: ' + interv.moduleIntitule]" [pElementsContent]="['Volume de cours: '+interv.vhCoursInterv + ' hr', 'Volume de TD: '+interv.vhTDInterv + ' hr','Volume de TP: '+interv.vhTPInterv + ' hr', 'Evaluation: '+interv.evaluationInterv]"></app-card>
+    @for (interv of getInterventions; track $index){
+
+            <app-card [imageSrc]='"assets/images/Modules/" + interv.moduleIntitule + ".jpg"'
+                      [title] = "interv.intitule"
+                      [subtitles]="['Enseignant: '+ interv.enseignant.nom, 'Module: '+ interv.moduleIntitule]" 
+                      [pElementsContent]="['Volume de cours: '+interv.vhCoursInterv + ' hr', 'Volume de TD: '+interv.vhTDInterv + ' hr','Volume de TP: '+interv.vhTPInterv + ' hr', 'Evaluation: '+interv.evaluationInterv]"
+                      (deleteConfirmed)="deleteIntervention(interv.enseignant.email, interv.moduleIntitule)"
+                      >
+            </app-card>
     }
 </div>

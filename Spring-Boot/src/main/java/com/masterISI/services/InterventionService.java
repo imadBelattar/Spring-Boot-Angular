@@ -1,7 +1,9 @@
 package com.masterISI.services;
 
+import com.masterISI.dto.EnseignantForIntervDTO;
 import com.masterISI.dto.InterventionDTO;
 import com.masterISI.models.Intervention;
+import com.masterISI.models.InterventionId;
 import com.masterISI.repositories.InterventionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,9 @@ public class InterventionService {
 
     public InterventionDTO convertToInterventionDTO(Intervention intervention){
         InterventionDTO dto = new InterventionDTO();
-        dto.setEnseignantNom(intervention.getEnseignant().getPrenom() + " " + intervention.getEnseignant().getNom());
+        dto.setEnseignant(new EnseignantForIntervDTO(intervention.getEnseignant().getEmail(),
+                    intervention.getEnseignant().getPrenom()
+                         + " " + intervention.getEnseignant().getNom()));
         dto.setModuleIntitule(intervention.getModule().getIntitule());
         dto.setIntitule(intervention.getIntitule());
         dto.setVhCoursInterv(intervention.getVhCoursInterv());
@@ -31,5 +35,13 @@ public class InterventionService {
         return interventionRepository.findAll().stream()
                 .map(this::convertToInterventionDTO)
                 .collect(Collectors.toList());
+    }
+    public Intervention deleteIntervention(String enseignantEmail, String moduleIntitule) {
+        Intervention intervention = interventionRepository.findById(new InterventionId(enseignantEmail, moduleIntitule)).orElse(null);
+        if (intervention != null) {
+            interventionRepository.delete(intervention);
+            return intervention;
+        }
+        return null;
     }
 }

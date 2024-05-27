@@ -5,5 +5,8 @@ export interface Intervention {
     vhTPInterv: number;
     evaluationInterv: number;
     moduleIntitule: string;
-    enseignantNom: string;
+    enseignant: {
+        nom: string;
+        email: string;
+    };
 }

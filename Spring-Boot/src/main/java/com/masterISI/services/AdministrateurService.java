@@ -18,7 +18,5 @@ public class AdministrateurService {
         this.interventionService = interventionService;
     }
 
-    public List<InterventionDTO> getAllInterventions() {
-        return interventionService.getAllInterventions();
-    }
+
 }

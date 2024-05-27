@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InterventionDTO {
-    private String EnseignantNom;
-    private String ModuleIntitule;
+    private EnseignantForIntervDTO enseignant;
+    private String moduleIntitule;
     private String intitule;
     private int vhCoursInterv;
     private int vhTDInterv;

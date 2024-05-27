@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import {MatDividerModule} from '@angular/material/divider';
 
 @Component({
   selector: 'app-sidenav',
   standalone: true,
-  imports: [RouterLink, MatIconModule, MatButtonModule, MatDividerModule],
+  imports: [RouterLink, RouterLinkActive, MatIconModule, MatButtonModule, MatDividerModule],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.css'
 })

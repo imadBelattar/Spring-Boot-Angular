@@ -33,4 +33,12 @@ export class ApiService {
       catchError(this.handleError)
     );
   }
+
+  delete<T>(path: string): Observable<T> {
+    return this.httpClient.delete<T>(`${this.apiUrl}${path}`,
+    {responseType: 'text' as 'json'}
+    ).pipe(
+      catchError(this.handleError)
+    );
+  }
 }

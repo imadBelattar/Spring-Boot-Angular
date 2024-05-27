@@ -17,7 +17,10 @@ a{
     color: var(--color);
     text-decoration: none;
 }
-
+.activeLink{
+    color:  white;
+    background-color: #3366ff;
+}
 ul{
  padding: 0;
 }
@@ -28,10 +31,14 @@ ul{
     gap: 20px;
     align-items: center;
     text-align: center;
+    border: 1px solid  #ffffff;
+    border-radius: 5px;
     transition: all 0.3s ease;
 }
 .side-li:hover{
-    color:  #3366ff    ;
+    color:  white;
+    border-radius: 5px;
+    background-color: #3366ff;
     transition: all 0.3s ease;
 }
 .sidenav-header{

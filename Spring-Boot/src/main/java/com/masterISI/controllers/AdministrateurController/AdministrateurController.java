@@ -42,8 +42,5 @@ public class AdministrateurController {
 
     }
 
-    @GetMapping("/interventions")
-    public ResponseEntity<?> getInterventions() {
-        return ResponseEntity.ok(administrateurService.getAllInterventions());
-    }
+
 }
