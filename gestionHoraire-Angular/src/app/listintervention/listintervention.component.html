@@ -1,0 +1,57 @@
+<div class="container">
+  <h2>List Intervention</h2>
+
+  <!-- Form to input enseignant's email -->
+  <form class="email-form" (ngSubmit)="getInterventionsByEnseignantEmail()">
+    <mat-form-field appearance="fill" class="email-input">
+      <mat-label>Enseignant Email:</mat-label>
+      <input matInput type="email" id="enseignantEmail" name="enseignantEmail" [(ngModel)]="enseignantEmail" required>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Get Interventions</button>
+  </form>
+
+  <!-- Display list of interventions -->
+  <div class="card-container">
+    <div *ngFor="let intervention of interventions" class="intervention-card">
+      <div class="card-content">
+        <!-- Intervention details -->
+        <strong>Intervention ID:</strong> {{ intervention.interventionId.emailEnseignant }} - {{ intervention.interventionId.intituleModule }}<br>
+        <strong>Enseignant:</strong> {{ intervention.enseignant.nom }} {{ intervention.enseignant.prenom }}<br>
+        <strong>Module:</strong> {{ intervention.module.intitule }}<br>
+        <strong>Intitule:</strong> {{ intervention.intitule }}<br>
+        <strong>Hours (Cours):</strong> {{ intervention.vhCoursInterv }}<br>
+        <strong>Hours (TD):</strong> {{ intervention.vhTDInterv }}<br>
+        <strong>Hours (TP):</strong> {{ intervention.vhTPInterv }}<br>
+        <strong>Evaluation:</strong> {{ intervention.evaluationInterv }}<br>
+        
+        <!-- Edit button -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit form -->
+  <div *ngIf="editedIntervention">
+    <h3>Edit Intervention</h3>
+    <form (ngSubmit)="saveEditedIntervention()">
+      <!-- Editable fields -->
+      <label for="editedIntitule">Intitule:</label>
+      <input type="text" id="editedIntitule" name="editedIntitule" [(ngModel)]="editedIntervention.intitule" required>
+  
+      <label for="editedVhCours">Hours (Cours):</label>
+      <input type="number" id="editedVhCours" name="editedVhCours" [(ngModel)]="editedIntervention.vhCoursInterv" required>
+  
+      <label for="editedVhTD">Hours (TD):</label>
+      <input type="number" id="editedVhTD" name="editedVhTD" [(ngModel)]="editedIntervention.vhTDInterv" required>
+  
+      <label for="editedVhTP">Hours (TP):</label>
+      <input type="number" id="editedVhTP" name="editedVhTP" [(ngModel)]="editedIntervention.vhTPInterv" required>
+  
+      <label for="editedEvaluation">Evaluation:</label>
+      <input type="number" id="editedEvaluation" name="editedEvaluation" [(ngModel)]="editedIntervention.evaluationInterv" required>
+  
+      <!-- Save button -->
+      <button mat-raised-button color="primary" type="submit">Save</button>
+      <button mat-raised-button color="warn" type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .email-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .email-input {
+    margin-right: 10px;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .intervention-card {
+    flex: 0 0 calc(25% - 20px);
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .card-content {
+    padding: 10px;
+  }
+  
+  .card-content strong {
+    display: block;
+    margin-bottom: 5px;
+  }
+  

@@ -1,0 +1,78 @@
+<div class="intervention-list">
+  <h2>List of Interventions</h2>
+  <div class="intervention-grid">
+    <div *ngFor="let intervention of interventions" class="intervention-card">
+      <mat-card class="matCard">
+        <mat-card-header class="matCard-header">
+          <mat-card-title>Intervention Details</mat-card-title>
+          <mat-card-subtitle>ID: {{ intervention.interventionId.emailEnseignant }} - {{ intervention.interventionId.intituleModule }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p><strong>Enseignant:</strong> {{ intervention.enseignant.nom }} {{ intervention.enseignant.prenom }}</p>
+          <p><strong>Module:</strong> {{ intervention.module.intitule }}</p>
+          <p><strong>Intitule:</strong> {{ intervention.intitule }}</p>
+          <p><strong>Hours (Cours):</strong> {{ intervention.vhCoursInterv }}</p>
+          <p><strong>Hours (TD):</strong> {{ intervention.vhTDInterv }}</p>
+          <p><strong>Hours (TP):</strong> {{ intervention.vhTPInterv }}</p>
+          <p><strong>Evaluation:</strong> {{ intervention.evaluationInterv }}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <div class="card-buttons">
+            <button mat-stroked-button color="primary" (click)="editIntervention(intervention)">Edit<mat-icon>edit</mat-icon></button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div *ngIf="editedIntervention" class="edit-intervention-form" id="editInterventionForm">
+    <mat-card class="matCard">
+      <mat-card-header class="matCard-header">
+        <mat-card-title>Edit Intervention</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form (ngSubmit)="saveEditedIntervention()">
+          <mat-form-field>
+            <mat-label>Intitule</mat-label>
+            <input matInput type="text" [(ngModel)]="editedIntervention.intitule" name="intitule" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Hours (Cours)</mat-label>
+            <input matInput type="number" [(ngModel)]="editedIntervention.vhCoursInterv" name="vhCoursInterv" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Hours (TD)</mat-label>
+            <input matInput type="number" [(ngModel)]="editedIntervention.vhTDInterv" name="vhTDInterv" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Hours (TP)</mat-label>
+            <input matInput type="number" [(ngModel)]="editedIntervention.vhTPInterv" name="vhTPInterv" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Evaluation</mat-label>
+            <input matInput type="number" [(ngModel)]="editedIntervention.evaluationInterv" name="evaluationInterv" required>
+          </mat-form-field>
+
+          <mat-card-actions>
+            <button mat-stroked-button color="primary" type="submit">Save</button>
+            <button mat-stroked-button color="warn" type="button" (click)="cancelEdit()">Cancel</button>
+          </mat-card-actions>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<script>
+  function scrollToEdit() {
+    const editForm = document.getElementById('editInterventionForm');
+    if (editForm) {
+      editForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+</script>
+

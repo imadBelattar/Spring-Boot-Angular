@@ -22,12 +22,15 @@ public class Intervention {
     private Module module;
 
     private String intitule;
+
     @Column(name = "vh_cours")
     private int vhCoursInterv;
+
     @Column(name = "vh_td")
     private int vhTDInterv;
+
     @Column(name = "vh_tp")
     private int vhTPInterv;
-    @Column(name = "evaluation")
+
     private int evaluationInterv;
 }

@@ -1,14 +1,14 @@
 package com.masterISI.models;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import jakarta.persistence.PrimaryKeyJoinColumn;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @NoArgsConstructor
 @Data
 @Entity
-@PrimaryKeyJoinColumn(name = "email")
-public class Administrateur extends Enseignant{
-    private String password;
-}
+@DiscriminatorValue("ADMINISTRATEUR")
+@CrossOrigin(origins = "http://localhost:4200")
+public class Administrateur extends Enseignant {}

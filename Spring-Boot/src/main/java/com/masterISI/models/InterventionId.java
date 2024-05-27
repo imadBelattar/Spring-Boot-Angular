@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -13,5 +14,4 @@ import java.io.Serializable;
 public class InterventionId implements Serializable {
     private String emailEnseignant;
     private String intituleModule;
-
 }

@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @NoArgsConstructor
 @Data
+@CrossOrigin(origins = "http://localhost:4200")
 @Entity
 public class Module {
     @Id
@@ -27,4 +29,8 @@ public class Module {
     @JsonBackReference
     @OneToMany(mappedBy = "module")
     private List<Intervention> interventions;
+
+    public void setId(Long id) {
+
+    }
 }

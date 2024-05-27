@@ -1,0 +1,72 @@
+<div>
+  <h2>List of Modules</h2>
+  <div class="module-grid">
+    <div *ngFor="let module of modules" class="module-card">
+      <mat-card class="matCard">
+        <mat-card-header class="matCard-header">
+          <mat-card-title>Module Details</mat-card-title>
+          <mat-card-subtitle>ID: {{ module.intitule }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p><strong>Intitule:</strong> {{ module.intitule }}</p>
+          <p><strong>Volume Horaire Cours:</strong> {{ module.volumeHoraireCours }}</p>
+          <p><strong>Volume Horaire TD:</strong> {{ module.volumeHoraireTD }}</p>
+          <p><strong>Volume Horaire TP:</strong> {{ module.volumeHoraireTP }}</p>
+          <p><strong>Evaluation:</strong> {{ module.evaluation }}</p>
+          <p><strong>Filiere:</strong> {{ module.filiere.nomFiliere }}</p>
+        </mat-card-content>
+        <mat-card-actions align="end">
+          <div class="card-buttons">
+            <button mat-stroked-button color="primary" (click)="editModule(module)">Edit<mat-icon>edit</mat-icon></button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  <div *ngIf="editedModule">
+    <mat-card class="matCard">
+      <mat-card-header class="matCard-header">
+        <mat-card-title>Edit Module</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form (ngSubmit)="saveEditedModule()">
+          <mat-form-field>
+            <mat-label>Intitule</mat-label>
+            <input matInput type="text" [(ngModel)]="editedModule.intitule" name="intitule" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Volume Horaire Cours</mat-label>
+            <input matInput type="number" [(ngModel)]="editedModule.volumeHoraireCours" name="volumeHoraireCours" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Volume Horaire TD</mat-label>
+            <input matInput type="number" [(ngModel)]="editedModule.volumeHoraireTD" name="volumeHoraireTD" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Volume Horaire TP</mat-label>
+            <input matInput type="number" [(ngModel)]="editedModule.volumeHoraireTP" name="volumeHoraireTP" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Evaluation</mat-label>
+            <input matInput type="number" [(ngModel)]="editedModule.evaluation" name="evaluation" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Filiere</mat-label>
+            <input matInput type="text" [(ngModel)]="editedModule.filiere.nomFiliere" name="nomFiliere" required>
+          </mat-form-field>
+
+          <mat-card-actions>
+
+            <button mat-stroked-button color="primary" type="submit">Save</button>
+            <button mat-stroked-button color="warn" type="button" (click)="cancelEdit()">Cancel</button>
+          </mat-card-actions>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

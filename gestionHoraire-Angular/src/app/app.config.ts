@@ -7,5 +7,5 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { requestInterceptor } from './interceptor/request.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(withInterceptors([requestInterceptor])), provideAnimationsAsync()]
+  providers: [provideRouter(routes), provideHttpClient(withInterceptors([requestInterceptor])), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync()]
 };

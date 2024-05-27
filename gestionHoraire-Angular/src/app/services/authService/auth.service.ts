@@ -10,7 +10,8 @@ export class AuthService {
   constructor(private apiService: ApiService) {}
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('accessToken');
+    /*    return !!localStorage.getItem('accessToken');*/
+    return true;
   }
 
   login(email: string, password: string) {

@@ -1,0 +1,42 @@
+<form id="interventionForm" #interventionForm="ngForm" class="form-container">
+  <mat-form-field class="form-field">
+    <mat-label>Enseignant:</mat-label>
+    <select matNativeControl required name="enseignant" [(ngModel)]="selectedEnseignantId">
+      <option *ngFor="let enseignant of enseignants" [value]="enseignant.email">{{ enseignant.nom }}</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Module:</mat-label>
+    <select matNativeControl required name="module" [(ngModel)]="selectedModuleId">
+      <option *ngFor="let module of modules" [value]="module.intitule">{{ module.intitule }}</option>
+    </select>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Intitule:</mat-label>
+    <input matInput type="text" name="intitule" [(ngModel)]="intitule" required>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Volume Horaire Cours Intervention:</mat-label>
+    <input matInput type="number" name="vhCoursInterv" [(ngModel)]="vhCoursInterv" min="0" required>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Volume Horaire TD Intervention:</mat-label>
+    <input matInput type="number" name="vhTDInterv" [(ngModel)]="vhTDInterv" min="0" required>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Volume Horaire TP Intervention:</mat-label>
+    <input matInput type="number" name="vhTPInterv" [(ngModel)]="vhTPInterv" min="0" required>
+  </mat-form-field>
+
+  <mat-form-field class="form-field">
+    <mat-label>Evaluation Intervention:</mat-label>
+    <input matInput type="number" name="evaluationInterv" [(ngModel)]="evaluationInterv" min="0" required>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="button" (click)="createIntervention()" [disabled]="!interventionForm.form.valid">Create Intervention</button>
+</form>
