@@ -1,9 +1,8 @@
-<app-popup-message [message]="'message fgsdfgsfds sfsdfsdf'"></app-popup-message>
-@if(getMessage !== ''){
-    <app-popup-message [message]="message"></app-popup-message>
+@if(message !== ''){
+    <app-popup-message [message]="message" [backgroundColor]="message === 'Intervention supprimée avec succès!' ? '#4caf50': 'red'" [iconName]="'check'"></app-popup-message>
 }
 <div class="dashboard-container">
-    @for (interv of getInterventions; track $index){
+    @for (interv of interventions; track $index){
 
             <app-card [imageSrc]='"assets/images/Modules/" + interv.moduleIntitule + ".jpg"'
                       [title] = "interv.intitule"

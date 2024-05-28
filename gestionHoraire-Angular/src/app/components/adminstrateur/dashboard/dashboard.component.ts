@@ -3,6 +3,7 @@ import { CardComponent } from '../../card/card.component';
 import { Intervention } from '../../../models/intervention';
 import { AdminService } from '../../../services/admin/admin.service';
 import { PopupMessageComponent } from '../../popup-message/popup-message.component';
+import { ApiResponse } from '../../../models/api-response';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,22 +19,12 @@ export class DashboardComponent implements OnInit {
   message: string = '';
 
   ngOnInit(): void {
-    this.adminService.getInterventions().subscribe((interventions) => {
-      this.interventions = interventions;
+    this.adminService.getInterventions().subscribe((res: ApiResponse<Intervention[]>) => {
+      this.interventions = res.data;
     });
   }
-
-
-  get getInterventions(): Intervention[] {
-    return this.interventions;
-  }
-  get getMessage(): string {
-    return this.message;
-  }
-
   workWithMessage(time: number, msg: string): void {
     this.message = msg;
-    console.log("message :", this.message);
     setTimeout(() => {
       this.message = '';
     }, time);

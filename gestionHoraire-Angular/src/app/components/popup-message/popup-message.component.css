@@ -1,9 +1,12 @@
 .popup-message {
     position: fixed;
-    top: 10px;
+    top: 18px;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #4caf50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     color: white;
     padding: 20px;
     border-radius: 5px;

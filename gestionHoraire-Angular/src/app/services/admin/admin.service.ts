@@ -3,6 +3,7 @@ import { ApiService } from '../apiService/api.service';
 import { Intervention } from '../../models/intervention';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ApiResponse } from '../../models/api-response';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class AdminService {
 
   constructor(private apiService: ApiService) {}
 
-  getInterventions(): Observable<Intervention[]>  {
-    return this.apiService.get<Intervention[]>('/intervention/interventions');
+  getInterventions(): Observable<ApiResponse<Intervention[]>>  {
+    return this.apiService.get<ApiResponse<Intervention[]>>('/intervention/interventions');
   }
  
 
