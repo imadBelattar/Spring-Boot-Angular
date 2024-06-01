@@ -1,5 +1,5 @@
 @if(message !== ''){
-    <app-popup-message [message]="message" [backgroundColor]="message === 'Intervention supprimée avec succès!' ? '#4caf50': 'red'" [iconName]="'check'"></app-popup-message>
+    <app-popup-message [message]="message" [backgroundColor]="status === 'success' ? '#4caf50': 'red'" [iconName]="'check'"></app-popup-message>
 }
 <div class="dashboard-container">
     @for (interv of interventions; track $index){
@@ -9,7 +9,48 @@
                       [subtitles]="['Enseignant: '+ interv.enseignant.nom, 'Module: '+ interv.moduleIntitule]" 
                       [pElementsContent]="['Volume de cours: '+interv.vhCoursInterv + ' hr', 'Volume de TD: '+interv.vhTDInterv + ' hr','Volume de TP: '+interv.vhTPInterv + ' hr', 'Evaluation: '+interv.evaluationInterv]"
                       (deleteConfirmed)="deleteIntervention(interv.enseignant.email, interv.moduleIntitule)"
+                      (edit)="editIntervention(interv)"
                       >
             </app-card>
     }
 </div>
+<div *ngIf="editedIntervention" class="edit-intervention-form" id="editInterventionForm">
+    <mat-card class="matCard editCard">
+      <mat-card-header class="matCard-header">
+        <mat-card-title>Edit Intervention</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form (ngSubmit)="saveEditedIntervention()">
+          <mat-form-field>
+            <mat-label>Intitule</mat-label>
+            <input matInput type="text" [(ngModel)]="editedIntervention.intitule" name="intitule" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Hours (Cours)</mat-label>
+            <input matInput type="number" [(ngModel)]="editedIntervention.vhCoursInterv" name="vhCoursInterv" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Hours (TD)</mat-label>
+            <input matInput type="number" [(ngModel)]="editedIntervention.vhTDInterv" name="vhTDInterv" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Hours (TP)</mat-label>
+            <input matInput type="number" [(ngModel)]="editedIntervention.vhTPInterv" name="vhTPInterv" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Evaluation</mat-label>
+            <input matInput type="number" [(ngModel)]="editedIntervention.evaluationInterv" name="evaluationInterv" required>
+          </mat-form-field>
+
+          <mat-card-actions>
+            <button mat-stroked-button color="primary" type="submit">Save<mat-icon>save</mat-icon></button>
+            <button mat-stroked-button color="warn" type="button" (click)="cancelEdit()">Cancel<mat-icon>cancel</mat-icon></button>
+          </mat-card-actions>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

@@ -15,7 +15,7 @@
         @if(wantButtons){
         <div class="card-buttons">
             <button mat-stroked-button color="warn" mat-button (click)="openDialog()">Supprimer<mat-icon>delete</mat-icon></button>
-            <button mat-stroked-button color="primary">Modifier<mat-icon>edit</mat-icon></button>
+            <button mat-stroked-button color="primary" (click)="onEdit()">Modifier<mat-icon>edit</mat-icon></button>
         </div>
         }
     </mat-card-actions>

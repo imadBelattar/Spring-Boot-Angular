@@ -21,9 +21,13 @@ export class CardComponent {
   @Input() imageSrc!: string;
 
   @Output() deleteConfirmed = new EventEmitter<void>();
+  @Output() edit = new EventEmitter<void>();
 
   onError(event: Event) {
     (event.target as HTMLImageElement).src = 'assets/images/intervention.png';
+  }
+  onEdit(): void {
+    this.edit.emit();
   }
 
   openDialog(): void {

@@ -22,7 +22,7 @@ public class InterventionController {
     @GetMapping("/interventions")
     public ResponseEntity<ApiResponse<List<InterventionDTO>>> getInterventions() {
         List<InterventionDTO> interventions = interventionService.getAllInterventions();
-        return ResponseEntity.ok(new ApiResponse<>(true,"Liste des interventions",interventions));
+        return ResponseEntity.ok(new ApiResponse<>(true,"Liste des interventions", interventions));
     }
 
 

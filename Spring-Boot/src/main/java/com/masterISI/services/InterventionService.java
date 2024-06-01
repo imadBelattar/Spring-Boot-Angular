@@ -2,6 +2,7 @@ package com.masterISI.services;
 
 import com.masterISI.dto.EnseignantForIntervDTO;
 import com.masterISI.dto.InterventionDTO;
+import com.masterISI.exceptions.ResourceNotFoundException;
 import com.masterISI.models.Intervention;
 import com.masterISI.models.InterventionId;
 import com.masterISI.repositories.InterventionRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,5 +45,20 @@ public class InterventionService {
             return intervention;
         }
         return null;
+    }
+
+    public InterventionDTO updateIntervention(InterventionDTO interventionUPD) {
+        InterventionId id = new InterventionId(interventionUPD.getEnseignant().getEmail(), interventionUPD.getModuleIntitule());
+        Optional<Intervention> optionalIntervention = interventionRepository.findById(id);
+        if (!optionalIntervention.isPresent()) {
+            throw new ResourceNotFoundException("Intervention not found with id: " + id);
+        }
+        Intervention intervention = optionalIntervention.get();
+        intervention.setIntitule(interventionUPD.getIntitule());
+        intervention.setVhCoursInterv(interventionUPD.getVhCoursInterv());
+        intervention.setVhTDInterv(interventionUPD.getVhTDInterv());
+        intervention.setVhTPInterv(interventionUPD.getVhTPInterv());
+        intervention.setEvaluationInterv(interventionUPD.getEvaluationInterv());;
+        return this.convertToInterventionDTO(interventionRepository.save(intervention));
     }
 }

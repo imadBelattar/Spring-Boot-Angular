@@ -1,8 +1,12 @@
 package com.masterISI.controllers.AdministrateurController;
 
+import com.masterISI.dto.InterventionDTO;
 import com.masterISI.models.Enseignant;
+import com.masterISI.models.Intervention;
+import com.masterISI.models.InterventionId;
 import com.masterISI.services.AdministrateurService;
 import com.masterISI.services.EnseignantService;
+import com.masterISI.services.InterventionService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +20,7 @@ import java.util.List;
 @RequestMapping("/api/v1/administrateur")
 public class AdministrateurController {
     private final EnseignantService enseignantService;
+    private final InterventionService interventionService;
     private final AdministrateurService administrateurService;
 
     //this method is used to add an enseignant, but it's only for testing purposes.
@@ -40,6 +45,13 @@ public class AdministrateurController {
     public ResponseEntity<List<Enseignant>> getEnseignantsList() {
         return ResponseEntity.ok(enseignantService.getEnseignants());
 
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<InterventionDTO> updateIntervention(@RequestBody InterventionDTO intervention) {
+        System.out.println(intervention);
+        InterventionDTO updatedIntervention = interventionService.updateIntervention(intervention);
+        return new ResponseEntity<>(updatedIntervention, HttpStatus.OK);
     }
 
 
