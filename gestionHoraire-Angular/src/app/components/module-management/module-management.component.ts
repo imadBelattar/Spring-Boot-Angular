@@ -98,8 +98,14 @@ export class ModuleManagementComponent implements OnInit {
 
   saveEditedModule(): void {
 
-    if (!this.editedModule) {
-      console.error('No edited module to save.');
+    if (!this.validateEditModuleForm()) {
+      console.error('Invalid module form data:', this.editedModule);
+      this.msg = 'Veuillez remplir tous les champs !';
+      this.status = 'error';
+      setTimeout(() => {
+        this.msg = '';
+        this.status = '';
+      }, 2500);
       return;
     }
 
@@ -131,5 +137,32 @@ export class ModuleManagementComponent implements OnInit {
 
   cancelEdit(): void {
     this.editedModule = null;
+  }
+
+  validateEditModuleForm(): boolean {
+    if (!this.editedModule) {
+      return false;
+    }
+  
+    if (!this.editedModule.intitule || this.editedModule.intitule.trim().length === 0) {
+      return false;
+    }
+    if (this.editedModule.vhCours === undefined || this.editedModule.vhCours === null) {
+      return false;
+    }
+    if (this.editedModule.vhTD === undefined || this.editedModule.vhTD === null) {
+      return false;
+    }
+    if (this.editedModule.vhTP === undefined || this.editedModule.vhTP === null) {
+      return false;
+    }
+    if (!this.editedModule.evaluation) {
+      return false;
+    }
+    if (!this.editedModule.filiereNom || this.editedModule.filiereNom.trim().length === 0) {
+      return false;
+    }
+  
+    return true;
   }
 }
