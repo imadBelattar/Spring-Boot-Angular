@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   editedIntervention: Intervention| null = null;
   message: string = '';
   status: string = '';
+  editIntervCardId: string = '';
 
   ngOnInit(): void {
     this.getAllIntervs();
@@ -67,8 +68,9 @@ export class DashboardComponent implements OnInit {
     }
   }
 
-  editIntervention(intervention: Intervention): void {
+  editIntervention(intervention: Intervention, id: string): void {
     this.editedIntervention = { ...intervention};
+    this.editIntervCardId = id;
     setTimeout(() => {
       this.scrollToEdit();
     } , 0);
@@ -86,12 +88,21 @@ export class DashboardComponent implements OnInit {
           if(updatedIntervention){
             this.getAllIntervs();
             this.status = 'success';
+            const card = document.getElementById(this.editIntervCardId);
+            if (card) {
+              card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
             this.workWithMessage(3000, 'Intervention mise à jour avec succès.');
+
           }
 
         },
         (error: HttpErrorResponse) => {
           this.status = 'error';
+          const card = document.getElementById(this.editIntervCardId);
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
           this.workWithMessage(3000, 'Erreur lors de la mise à jour de l\'intervention.');
         }
       );
@@ -101,6 +112,10 @@ export class DashboardComponent implements OnInit {
 
   cancelEdit(): void {
     this.editedIntervention = null;
+    const card = document.getElementById(this.editIntervCardId);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
 
