@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 
@@ -7,7 +7,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class ApiService {
 
-  private apiUrl = 'http://localhost:8080/api/v1';
+  private apiUrl = 'http://localhost:8081/api/v1';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -36,7 +36,7 @@ export class ApiService {
 
   delete<T>(path: string): Observable<T> {
     return this.httpClient.delete<T>(`${this.apiUrl}${path}`,
-    {responseType: 'text' as 'json'}
+      { responseType: 'text' as 'json' }
     ).pipe(
       catchError(this.handleError)
     );

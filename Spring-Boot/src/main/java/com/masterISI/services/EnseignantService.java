@@ -28,4 +28,9 @@ public class EnseignantService {
     public List<Enseignant> getAllEnseignants() {
         return enseignantRepository.findAll();
     }
+
+    public String getRoleByEmail(String email) {
+        Enseignant enseignant = enseignantRepository.findByEmail(email);
+        return enseignant.getRole();
+    }
 }

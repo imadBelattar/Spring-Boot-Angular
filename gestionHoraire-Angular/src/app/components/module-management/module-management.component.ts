@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
 
 import { MatIconModule } from '@angular/material/icon';
-import { Module } from '../../models/Module';
-import { Filiere } from '../../models/Filiere';
 import { MatSelectModule } from '@angular/material/select';
+import { Filiere } from '../../models/Filiere';
+import { Module } from '../../models/Module';
 import { ModuleDTO } from '../../models/module-dto';
 import { PopupMessageComponent } from '../popup-message/popup-message.component';
 
@@ -31,7 +31,7 @@ import { PopupMessageComponent } from '../popup-message/popup-message.component'
     MatIconModule,
     MatSelectModule,
     PopupMessageComponent
-    
+
   ]
 })
 export class ModuleManagementComponent implements OnInit {
@@ -49,7 +49,7 @@ export class ModuleManagementComponent implements OnInit {
   }
 
   fetchModules(): void {
-    this.http.get<Module[]>("http://localhost:8080/modules")
+    this.http.get<Module[]>("http://localhost:8081/modules")
       .subscribe(
         data => {
           this.modules = data;
@@ -62,7 +62,7 @@ export class ModuleManagementComponent implements OnInit {
 
 
   fetchFilieres() {
-    this.http.get<Filiere[]>("http://localhost:8080/filieres")
+    this.http.get<Filiere[]>("http://localhost:8081/filieres")
       .subscribe(data => {
         console.log('Filieres:', data);
         this.filieres = data;
@@ -74,13 +74,13 @@ export class ModuleManagementComponent implements OnInit {
 
 
   editModule(module: Module): void {
-    this.editedModule = { 
-      intitule: module.intitule, 
-      vhCours: module.volumeHoraireCours, 
-      vhTD: module.volumeHoraireTD, 
-      vhTP: module.volumeHoraireTP, 
-      evaluation: module.evaluation, 
-      filiereNom: module.filiere.nomFiliere 
+    this.editedModule = {
+      intitule: module.intitule,
+      vhCours: module.volumeHoraireCours,
+      vhTD: module.volumeHoraireTD,
+      vhTP: module.volumeHoraireTP,
+      evaluation: module.evaluation,
+      filiereNom: module.filiere.nomFiliere
     };
     console.log('Editing module as "ModuleDTO":');
     console.table(this.editedModule);
@@ -109,7 +109,7 @@ export class ModuleManagementComponent implements OnInit {
       return;
     }
 
-    this.http.put<ModuleDTO>(`http://localhost:8080/updateModule`, this.editedModule)
+    this.http.put<ModuleDTO>(`http://localhost:8081/updateModule`, this.editedModule)
       .subscribe(
         updatedModule => {
           console.log('Updated module:', updatedModule);
@@ -143,7 +143,7 @@ export class ModuleManagementComponent implements OnInit {
     if (!this.editedModule) {
       return false;
     }
-  
+
     if (!this.editedModule.intitule || this.editedModule.intitule.trim().length === 0) {
       return false;
     }
@@ -162,7 +162,7 @@ export class ModuleManagementComponent implements OnInit {
     if (!this.editedModule.filiereNom || this.editedModule.filiereNom.trim().length === 0) {
       return false;
     }
-  
+
     return true;
   }
 }

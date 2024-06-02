@@ -10,7 +10,15 @@ export class AuthService {
 
   constructor(private apiService: ApiService) {}
 
-  isLoggedIn(): boolean {
+
+
+
+  // *************** Now we are implementing the keycloak authentication service ***************
+  //*********************************************************************************************** */
+
+  //*********** *****************check the authGuard and keycloakService ******************************* */
+
+/*   isLoggedIn(): boolean {
       return true
 //    return !!localStorage.getItem('accessToken');
   }
@@ -20,5 +28,5 @@ export class AuthService {
     console.log('Password:', password); 
     return this.apiService.post<{ email: string, password: string }>('/auth/login', { email, password });
   }
-
+ */
 }

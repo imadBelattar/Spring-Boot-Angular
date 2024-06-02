@@ -1,57 +1,60 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ButtonComponent } from '../components/button/button.component';
 import { InputComponent } from '../components/input/input.component';
-import { AuthService } from '../services/authService/auth.service';
-
+import { KeycloakService } from '../keycloak/keycloak.service';
+import { UserProfile } from '../keycloak/user-profile';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, ButtonComponent, InputComponent, CommonModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrls: ['./login.component.css'] // Corrected from styleUrl to styleUrls
 })
-export class LoginComponent {
-  constructor(private authService: AuthService){}
+export class LoginComponent implements OnInit {
+  profile!: UserProfile | undefined;
+  userEmail: string = '';
+  userFullName: string = '';
+  role!: string | null;
 
+  constructor(private keycloakService: KeycloakService, private router: Router, private httpCient: HttpClient) { }
 
-  user: {email: string, password: string} = {email: '', password: ''};
-  invalidCredentialsFormat: string = '';
-  inputsIconStyle: string = '';
-
-  onSubmit(event: any): any{
-      event.preventDefault();
-      console.log('Form submitted');
-      if(this.user.email.length === 0 || this.user.password.length === 0) {
-        this.inputsIconStyle = 'color: red;';
-        this.invalidCredentialsFormat = 'Le mot de passe et l\'email sont nécessaires';
-        return;
-      } 
-      if (!this.user.email.endsWith('@uca.ac.ma')){
-        this.inputsIconStyle = 'color: red;';
-        this.invalidCredentialsFormat = 'Email non valide';
-        return;
-      }
-      this.authService.login(this.user.email, this.user.password);
-      this.clearAll();
-
-
-
-  }
-  onEmailChange(email: string) {
-    this.user.email = email;
-  }
-  onPasswordChange(password: string) {
-    this.user.password = password;
-  }
-  clearAll() {
-    this.invalidCredentialsFormat = '';
-    this.inputsIconStyle = '';
-    this.user.email = '';
-    this.user.password = '';
-    
+  async ngOnInit(): Promise<void> {
+    this.profile = this.keycloakService.profile;
+    console.log(this.profile);
+    this.userEmail = this.profile?.email || '';
+    this.userFullName = this.profile?.firstName + ' ' + this.profile?.lastName || '';
+    if(localStorage.getItem('username')) {
+      localStorage.removeItem('username');
+    }
+    localStorage.setItem('username', this.userFullName);
+    this.fetchUserRole();
   }
 
+
+  fetchUserRole() {
+    this.httpCient.get<string>("http://localhost:8081/enseignantRole/" + this.userEmail, { responseType: 'text' as 'json' })
+      .subscribe(
+        data => {
+          this.role = data;
+          console.log("User role fetched successfully:", this.role);
+          if (this.role === "ADMINISTRATEUR") {
+            this.router.navigate(['/adminDashboard']);
+          } else if (this.role === "ENSEIGNANT") {
+            this.router.navigate(['/enseignantDashboard']);
+          } else {
+            console.error("User role not recognized:", this.role);
+            this.router.navigate(['/']);
+          }
+        },
+        error => {
+          console.error("Error fetching user role:", error);
+          this.router.navigate(['/']);
+        }
+      );
+  }
 }

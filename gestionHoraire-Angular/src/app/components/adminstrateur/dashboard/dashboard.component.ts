@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { CardComponent } from '../../card/card.component';
-import { Intervention } from '../../../models/intervention';
-import { AdminService } from '../../../services/admin/admin.service';
-import { PopupMessageComponent } from '../../popup-message/popup-message.component';
-import { ApiResponse } from '../../../models/api-response';
-import { InterventionHt } from '../../../models/interventionHt';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { MatCard, MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MatInputModule } from '@angular/material/input';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { ApiResponse } from '../../../models/api-response';
+import { Intervention } from '../../../models/intervention';
+import { InterventionHt } from '../../../models/interventionHt';
+import { AdminService } from '../../../services/admin/admin.service';
+import { CardComponent } from '../../card/card.component';
+import { PopupMessageComponent } from '../../popup-message/popup-message.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private adminService: AdminService, private http: HttpClient) { }
   interventions: Intervention[] = [];
-  editedIntervention: Intervention| null = null;
+  editedIntervention: Intervention | null = null;
   message: string = '';
   status: string = '';
   editIntervCardId: string = '';
@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  
+
   scrollToEdit() {
     const editForm = document.getElementById('editInterventionForm');
     if (editForm) {
@@ -69,11 +69,11 @@ export class DashboardComponent implements OnInit {
   }
 
   editIntervention(intervention: Intervention, id: string): void {
-    this.editedIntervention = { ...intervention};
+    this.editedIntervention = { ...intervention };
     this.editIntervCardId = id;
     setTimeout(() => {
       this.scrollToEdit();
-    } , 0);
+    }, 0);
   }
 
   saveEditedIntervention(): void {
@@ -82,10 +82,10 @@ export class DashboardComponent implements OnInit {
       return;
     }
 
-    this.http.put<InterventionHt>("http://localhost:8080/api/v1/administrateur/update", this.editedIntervention)
+    this.http.put<InterventionHt>("http://localhost:8081/api/v1/administrateur/update", this.editedIntervention)
       .subscribe(
         updatedIntervention => {
-          if(updatedIntervention){
+          if (updatedIntervention) {
             this.getAllIntervs();
             this.status = 'success';
             const card = document.getElementById(this.editIntervCardId);
