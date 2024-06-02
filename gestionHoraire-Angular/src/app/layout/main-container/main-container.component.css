@@ -14,6 +14,8 @@
     overflow-y: hidden;
     background-color: #eef2f883;
 }
+
+
 @media (max-width: 665px){
     .main-content{
         padding-left: 160px;

@@ -28,6 +28,6 @@ public class Intervention {
     private int vhTDInterv;
     @Column(name = "vh_tp")
     private int vhTPInterv;
-    @Column(name = "evaluation_interv")
+    @Column(name = "evaluation")
     private int evaluationInterv;
 }

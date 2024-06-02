@@ -1,0 +1,82 @@
+<app-popup-message *ngIf="msg" [message]="msg" [backgroundColor]="status === 'success' ? '#4caf50': 'red'" [iconName]="status === 'success' ? 'check' : 'error'"></app-popup-message>
+<div>
+    <h2>Liste des Modules</h2>
+    <div class="module-grid">
+      <div *ngFor="let module of modules" class="module-card">
+        <mat-card class="matCard">
+          <mat-card-header class="matCard-header">
+            <h3><strong>Module :</strong> {{ module.intitule }}</h3>
+          </mat-card-header>
+          <mat-card-content>
+            <p><strong>Volume Horaire Cours:</strong> {{ module.volumeHoraireCours }}</p>
+            <p><strong>Volume Horaire TD:</strong> {{ module.volumeHoraireTD }}</p>
+            <p><strong>Volume Horaire TP:</strong> {{ module.volumeHoraireTP }}</p>
+            <p><strong>Evaluation:</strong> {{ module.evaluation }}</p>
+            <p><strong>Filiere:</strong> {{ module.filiere.nomFiliere }}</p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <div class="card-buttons">
+              <button mat-stroked-button color="primary" (click)="editModule(module)">Modifier<mat-icon>edit</mat-icon></button>
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+
+    <div *ngIf="editedModule" id="editModuleForm">
+        <mat-card class="matCard editCard" id="editModuleForm-sub">
+          <mat-card-header class="matCard-header">
+              <mat-card-title>
+                <h4>
+                    Modifier le module : {{ editedModule.intitule }}
+                </h4>
+              </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form (ngSubmit)="saveEditedModule()">
+              <mat-form-field appearance="outline" class="form-field" hidden>
+                <mat-label>Intitule</mat-label>
+                <input matInput type="text" [(ngModel)]="editedModule.intitule" name="intitule" disabled="">
+              </mat-form-field>
+    
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Volume Horaire Cours</mat-label>
+                <input matInput type="number" [(ngModel)]="editedModule.vhCours" name="volumeHoraireCours" required>
+              </mat-form-field>
+    
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Volume Horaire TD</mat-label>
+                <input matInput type="number" [(ngModel)]="editedModule.vhTD" name="volumeHoraireTD" required>
+              </mat-form-field>
+    
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Volume Horaire TP</mat-label>
+                <input matInput type="number" [(ngModel)]="editedModule.vhTP" name="volumeHoraireTP" required>
+              </mat-form-field>
+    
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Evaluation</mat-label>
+                <input matInput type="number" [(ngModel)]="editedModule.evaluation" name="evaluation" required>
+              </mat-form-field>
+    
+              <mat-form-field appearance="outline" class="form-field">
+                <mat-label>Filiere</mat-label>
+                <mat-select [(ngModel)]="editedModule.filiereNom" name="nomFiliere" required>
+                  <mat-option value="" disabled >Choisir une filiere</mat-option>
+                  <mat-option *ngFor="let filiere of filieres" [value]="filiere.nomFiliere">{{ filiere.nomFiliere }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              
+    
+              <mat-card-actions>
+                <button mat-stroked-button color="primary" type="submit">Save</button>
+                <button mat-stroked-button color="warn" type="button" (click)="cancelEdit()">Cancel</button>
+              </mat-card-actions>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+  </div>
+
+  

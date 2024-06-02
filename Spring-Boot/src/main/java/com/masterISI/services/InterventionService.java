@@ -8,6 +8,7 @@ import com.masterISI.exceptions.ValidationException;
 import com.masterISI.models.Intervention;
 import com.masterISI.models.InterventionId;
 import com.masterISI.repositories.InterventionRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +16,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+@AllArgsConstructor
 @Service
 public class InterventionService {
-    @Autowired
-    InterventionRepository interventionRepository;
+
+   private final InterventionRepository interventionRepository;
 
 
     public InterventionDTO convertToInterventionDTO(Intervention intervention){

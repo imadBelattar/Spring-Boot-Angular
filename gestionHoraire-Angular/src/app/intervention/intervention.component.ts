@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 import { PopupMessageComponent } from '../components/popup-message/popup-message.component';
 
 @Component({
@@ -16,14 +17,17 @@ import { PopupMessageComponent } from '../components/popup-message/popup-message
   templateUrl: './intervention.component.html',
   styleUrls: ['./intervention.component.css'],
   standalone: true,
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     FormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    PopupMessageComponent]
+    PopupMessageComponent,
+    MatSelectModule
+  ]
 })
 export class CreateInterventionComponent implements OnInit {
   enseignants: Enseignant[] = [];
@@ -65,6 +69,7 @@ export class CreateInterventionComponent implements OnInit {
 
   createIntervention() {
     this.msg = '';
+    this.status = '';
     // Prepare the intervention data
     const interventionData = {
       interventionId: {
@@ -83,7 +88,16 @@ export class CreateInterventionComponent implements OnInit {
       vhTPInterv: this.vhTPInterv,
       evaluationInterv: this.evaluationInterv
     };
-  
+
+    if (!this.isValidForm()) {
+      this.msg = 'Veuillez remplir tous les champs !';
+      this.status = 'error';
+      setTimeout(() => {
+        this.resetForm();
+      }, 2500);
+      return;
+    }
+
     console.log("Creation...., intervention data:", interventionData);
     this.http.post("http://localhost:8080/api/v1/administrateur/createIntervention", interventionData, { responseType: 'text' as 'json' })
       .subscribe(

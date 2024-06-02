@@ -39,7 +39,6 @@ public class AdministrateurController {
     }
     @PostMapping("/createIntervention")
     public ResponseEntity<String> addIntervention(@RequestBody Intervention intervention) {
-        
         try {
             interventionService.addIntervention(intervention);
             return ResponseEntity.status(HttpStatus.CREATED).body("Intervention créée avec succès !");
@@ -55,7 +54,6 @@ public class AdministrateurController {
 
     @PutMapping("/update")
     public ResponseEntity<InterventionDTO> updateIntervention(@RequestBody InterventionDTO intervention) {
-        System.out.println(intervention);
         InterventionDTO updatedIntervention = interventionService.updateIntervention(intervention);
         return new ResponseEntity<>(updatedIntervention, HttpStatus.OK);
     }

@@ -1,0 +1,76 @@
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
+    gap: 25px;
+  }
+  
+  .module-card {
+    flex: 0 0 calc(25% - 20px); /* Adjust width as needed */
+    margin-bottom: 20px;
+  }
+  
+  @media (max-width: 767px) {
+    .module-card {
+      flex: 0 0 calc(50% - 20px); /* Adjust width as needed for smaller screens */
+    }
+  }
+  
+  @media (max-width: 479px) {
+    .module-card {
+      flex: 0 0 calc(100% - 20px); /* Adjust width as needed for even smaller screens */
+    }
+  }
+
+  .edit-module-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+    z-index: 1000;
+  }
+  .form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  } 
+
+.editCard{
+    margin-top: 40px;
+    padding: 30px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    border-radius: 15px;
+
+}
+.editCard .matCard-header{
+    margin-bottom: 20px;
+}
+#editModuleForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+#editModuleForm-sub{
+    width: 80%;
+
+}
+@media (max-width: 768px) {
+    .editCard form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .editCard mat-card-content, mat-card-content input{
+        width: 100%;
+    }
+}
+
+  
+  
+  

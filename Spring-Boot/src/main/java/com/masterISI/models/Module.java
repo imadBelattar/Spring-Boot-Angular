@@ -19,6 +19,7 @@ public class Module {
     private int volumeHoraireTD;
     @Column(name = "vh_tp")
     private int volumeHoraireTP;
+    @Column(name = "evaluation")
     private int evaluation;
     @ManyToOne
     @JoinColumn(name = "filiere_nom")

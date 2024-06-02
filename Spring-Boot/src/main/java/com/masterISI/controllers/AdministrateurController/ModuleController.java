@@ -1,12 +1,13 @@
 package com.masterISI.controllers.AdministrateurController;
 
 
+import com.masterISI.dto.ModuleDTO;
 import com.masterISI.models.Module;
 import com.masterISI.services.ModuleService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,4 +20,15 @@ public class ModuleController {
         List<Module> modules = moduleService.getAllModules();
         return ResponseEntity.ok(modules);
     }
+
+    @PutMapping("/updateModule")
+    public ResponseEntity<Module> updateModule(@RequestBody ModuleDTO module) {
+        Module updatedModule = moduleService.updateModule(module);
+        if (updatedModule != null) {
+            return new ResponseEntity<>(updatedModule, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

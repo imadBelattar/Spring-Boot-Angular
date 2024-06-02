@@ -1,5 +1,5 @@
 
-<app-popup-message *ngIf="msg !== ''" [message]="msg" [backgroundColor]="status === 'success' ? '#4caf50': 'red'" [iconName]="status === 'success' ? 'check' : 'error'"></app-popup-message>
+<app-popup-message *ngIf="msg" [message]="msg" [backgroundColor]="status === 'success' ? '#4caf50': 'red'" [iconName]="status === 'success' ? 'check' : 'error'"></app-popup-message>
 <div class="createInterv" style="background-color: white; border-radius: 10px;">
   <div class="guidelines">
     <h2 style="margin-bottom: 25px;">Points Clés pour les Bonnes Pratiques ✅ :</h2>
@@ -36,16 +36,16 @@
   <form id="interventionForm" #interventionForm="ngForm" class="form-container">
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Enseignant:</mat-label>
-      <select matNativeControl required name="enseignant" [(ngModel)]="selectedEnseignantId">
-        <option *ngFor="let enseignant of enseignants" [value]="enseignant.email">{{ enseignant.nom }}</option>
-      </select>
+      <mat-select matNativeControl required name="enseignant" [(ngModel)]="selectedEnseignantId">
+        <mat-option *ngFor="let enseignant of enseignants" [value]="enseignant.email">{{ enseignant.nom }}</mat-option>
+      </mat-select>
     </mat-form-field>
   
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Module:</mat-label>
-      <select matNativeControl required name="module" [(ngModel)]="selectedModuleId">
-        <option *ngFor="let module of modules" [value]="module.intitule">{{ module.intitule }}</option>
-      </select>
+      <mat-select matNativeControl required name="module" [(ngModel)]="selectedModuleId">
+        <mat-option *ngFor="let module of modules" [value]="module.intitule">{{ module.intitule }}</mat-option>
+      </mat-select>
     </mat-form-field>
   
     <mat-form-field appearance="outline" class="form-field">

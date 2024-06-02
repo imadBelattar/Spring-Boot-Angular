@@ -5,6 +5,7 @@ import { MainContainerComponent } from './layout/main-container/main-container.c
 import { DashboardComponent } from './components/adminstrateur/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { CreateInterventionComponent } from './intervention/intervention.component';
+import { ModuleManagementComponent } from './components/module-management/module-management.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full"},
@@ -25,6 +26,10 @@ export const routes: Routes = [
             {
                 path: "addIntervention",
                 component: CreateInterventionComponent,
+            },
+            {
+                path: "modules",
+                component: ModuleManagementComponent,
             }
         ]
     },
