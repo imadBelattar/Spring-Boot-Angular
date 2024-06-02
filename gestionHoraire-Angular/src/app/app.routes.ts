@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { MainContainerComponent } from './layout/main-container/main-container.component';
 import { DashboardComponent } from './components/adminstrateur/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
+import { CreateInterventionComponent } from './intervention/intervention.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full"},
@@ -21,6 +22,10 @@ export const routes: Routes = [
                 path: "adminDashboard/:id",
                 component: DashboardComponent,
             },
+            {
+                path: "addIntervention",
+                component: CreateInterventionComponent,
+            }
         ]
     },
     { path: "**", component:  PageNotFoundComponent},

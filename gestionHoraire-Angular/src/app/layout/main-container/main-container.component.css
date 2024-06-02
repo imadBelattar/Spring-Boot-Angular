@@ -12,7 +12,7 @@
     display: flex;
     height: 100vh;
     overflow-y: hidden;
-    background-color: #edf1f7;
+    background-color: #eef2f883;
 }
 @media (max-width: 665px){
     .main-content{

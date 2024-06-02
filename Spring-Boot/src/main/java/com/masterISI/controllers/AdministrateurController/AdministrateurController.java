@@ -1,9 +1,10 @@
 package com.masterISI.controllers.AdministrateurController;
 
 import com.masterISI.dto.InterventionDTO;
+import com.masterISI.exceptions.InterventionAlreadyExistsException;
+import com.masterISI.exceptions.ValidationException;
 import com.masterISI.models.Enseignant;
 import com.masterISI.models.Intervention;
-import com.masterISI.models.InterventionId;
 import com.masterISI.services.AdministrateurService;
 import com.masterISI.services.EnseignantService;
 import com.masterISI.services.InterventionService;
@@ -19,20 +20,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/administrateur")
 public class AdministrateurController {
+
     private final EnseignantService enseignantService;
     private final InterventionService interventionService;
     private final AdministrateurService administrateurService;
-
-    //this method is used to add an enseignant, but it's only for testing purposes.
-    @PostMapping("/addEnseignant")
-    public Enseignant addEnseignant() {
-        Enseignant enseignant = new Enseignant();
-        enseignant.setEmail("test@uca.ac.ma");
-        enseignant.setNom("test");
-        enseignant.setPrenom("test");
-        enseignant.setPassword("test");
-        return enseignantService.addEnseignant(enseignant);
-    }
 
     @GetMapping("/enseignant/{email}")
     public ResponseEntity<?> getEnseignant(@PathVariable String email) {
@@ -43,9 +34,24 @@ public class AdministrateurController {
 
     @GetMapping("/enseignants")
     public ResponseEntity<List<Enseignant>> getEnseignantsList() {
-        return ResponseEntity.ok(enseignantService.getEnseignants());
+        return ResponseEntity.ok(enseignantService.getAllEnseignants());
 
     }
+    @PostMapping("/createIntervention")
+    public ResponseEntity<String> addIntervention(@RequestBody Intervention intervention) {
+        
+        try {
+            interventionService.addIntervention(intervention);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Intervention créée avec succès !");
+        } catch (InterventionAlreadyExistsException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Une erreur inattendue est survenue : " + e.getMessage());
+        }
+    }
+
 
     @PutMapping("/update")
     public ResponseEntity<InterventionDTO> updateIntervention(@RequestBody InterventionDTO intervention) {

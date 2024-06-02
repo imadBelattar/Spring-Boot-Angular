@@ -2,7 +2,9 @@ package com.masterISI.services;
 
 import com.masterISI.dto.EnseignantForIntervDTO;
 import com.masterISI.dto.InterventionDTO;
+import com.masterISI.exceptions.InterventionAlreadyExistsException;
 import com.masterISI.exceptions.ResourceNotFoundException;
+import com.masterISI.exceptions.ValidationException;
 import com.masterISI.models.Intervention;
 import com.masterISI.models.InterventionId;
 import com.masterISI.repositories.InterventionRepository;
@@ -61,4 +63,24 @@ public class InterventionService {
         intervention.setEvaluationInterv(interventionUPD.getEvaluationInterv());;
         return this.convertToInterventionDTO(interventionRepository.save(intervention));
     }
+
+    public void addIntervention(Intervention intervention) throws IllegalArgumentException, InterventionAlreadyExistsException {
+        if (intervention == null) {
+            throw new IllegalArgumentException("Intervention cannot be null");
+        }
+
+        if (intervention.getInterventionId() == null) {
+            throw new IllegalArgumentException("InterventionId is required");
+        }
+
+        if (interventionRepository.existsById(intervention.getInterventionId())) {
+            throw new InterventionAlreadyExistsException("Intervention already exists");
+        }
+
+        interventionRepository.save(intervention);
+    }
+
+
+
+
 }

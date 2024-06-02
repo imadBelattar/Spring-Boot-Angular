@@ -1,0 +1,33 @@
+.form-container {
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    padding: 70px;
+    padding-left: 10px;
+    width: 60%;
+  }
+  .createInterv{
+    display: flex;
+  }
+  .createInterv .guidelines{
+    padding: 30px;
+    width: 55%;
+  }
+  .form-field {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  @media (max-width: 1048px) {
+    .createInterv{
+      flex-direction: column;
+    }
+    .createInterv .guidelines{
+      padding: 15px;
+      width: 100%;
+    }
+    .form-container {
+      width: 100%;
+      margin: 0 ;
+      padding: 25px;
+    }
+  }
+      

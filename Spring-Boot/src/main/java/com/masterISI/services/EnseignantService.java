@@ -22,7 +22,7 @@ public class EnseignantService {
         }
         return enseignantRepository.save(enseignant);
     }
-    public List<Enseignant> getEnseignants() {
+    public List<Enseignant> getAllEnseignants() {
         return enseignantRepository.findAll();
     }
 }
