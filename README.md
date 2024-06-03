@@ -69,7 +69,6 @@ The Angular frontend for this project is ready for setup. Follow these steps to 
 3. Run `npm install` to install all required dependencies.
 4. Once installation is complete, run `ng serve --open` to start the Angular server and automatically open the application in your default web browser.
 
-//you can fit the example of the admin dashboard (the image is at images/adminDashboard.jpg) when logged in as administartor
 
 ## Contributors
 
