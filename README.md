@@ -120,6 +120,12 @@ Name the realm `gestion-intervention`.
 Set the Root URL, Redirect URI, and Web Origin as per your application's requirements.  
 Ensure the URLs match your application's deployment settings.
 
+### Create a Client
+
+Go to the **Clients** tab in your new realm.  
+Click **Create** to add a new client.  
+Fill in the necessary details such as Client ID, Root URL, Redirect URIs, etc. as per your application's requirements.
+
 ### Create Roles
 
 Go to the **Roles** tab in your new realm.  
