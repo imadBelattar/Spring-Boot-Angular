@@ -115,11 +115,6 @@ Log in with the admin username and password specified in the `docker-compose.yml
 In the Keycloak admin console, click on the Master dropdown in the top-left corner and select **Add realm**.  
 Name the realm `gestion-intervention`.
 
-### Configure Realm Settings
-
-Set the Root URL, Redirect URI, and Web Origin as per your application's requirements.  
-Ensure the URLs match your application's deployment settings.
-
 ### Create a Client
 
 Go to the **Clients** tab in your new realm.  
