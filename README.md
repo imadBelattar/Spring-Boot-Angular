@@ -59,6 +59,94 @@ The project comes pre-configured with database settings. Follow these steps to c
 CREATE DATABASE gestionchargehoraire;
 ```
 
+# Keycloak Setup Instructions
+
+To ensure that your application works properly with Keycloak, follow these steps:
+
+## Step 1: Install Docker
+
+Download and install Docker from the official Docker website:
+
+[Download Docker](https://www.docker.com/products/docker-desktop)
+
+## Step 2: Download Keycloak Image
+
+Download the Keycloak image from Docker Hub by running the following command in your terminal:
+
+```sh
+docker pull quay.io/keycloak/keycloak:latest
+```
+## Step 3: Run Keycloak using Docker Compose
+
+Create a docker-compose.yml file to define and run the Keycloak container. This file will also map the necessary ports.
+
+```yaml
+version: '3'
+
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+    ports:
+      - "8080:8080"
+    command:
+      - start-dev
+```
+
+## Run the Docker Compose Setup
+
+```sh
+docker-compose up -d
+```
+
+## Step 4: Access Keycloak
+
+Once the container is running, go to the following URL to access the Keycloak admin console:  
+[http://localhost:8080](http://localhost:8080)
+
+Log in with the admin username and password specified in the `docker-compose.yml` file (admin/admin).
+
+## Step 5: Configure Keycloak
+
+### Create a Realm
+
+In the Keycloak admin console, click on the Master dropdown in the top-left corner and select **Add realm**.  
+Name the realm `gestion-intervention`.
+
+### Configure Realm Settings
+
+Set the Root URL, Redirect URI, and Web Origin as per your application's requirements.  
+Ensure the URLs match your application's deployment settings.
+
+### Create Roles
+
+Go to the **Roles** tab in your new realm.  
+Create two roles:
+- `ADMINISTRATEUR`
+- `ENSEIGNANT`
+
+### Create Users and Assign Roles
+
+Go to the **Users** tab.  
+Click **Add user** and fill in the required details for each user.  
+Create two users: one for `enseignant` and one for `administrateur`.  
+After creating a user, go to the **Role Mappings** tab for that user and assign the appropriate role (either `ADMINISTRATEUR` or `ENSEIGNANT`).
+
+## Configure Database Integration
+
+Make sure that the users created in Keycloak are also stored in your `gestionchargehoraire` database.  
+This might require custom integration logic in your backend application to sync users between Keycloak and your database.
+
+![Keycloak Users Example](images/keycloak-users-example.jpg)
+
+## Final Note
+
+Ensure that all configurations are saved and the realm is correctly set up with the specified roles and users.  
+Verify that your application can communicate with Keycloak for authentication and authorization purposes.
+
+
 
 ## Frontend Setup
 
