@@ -23,7 +23,7 @@ The project aims to provide a comprehensive system for managing various tasks re
 
 When an administrator logs into the application, they are greeted with a comprehensive dashboard that allows them to manage all aspects of the system. Below is an example of the administrator dashboard:
 
-![Administrator Dashboard](images/adminDashboard.jpg)
+![Administrator Dashboard](images/admin-dashboard.jpg)
 
 
 ## Class Diagram
