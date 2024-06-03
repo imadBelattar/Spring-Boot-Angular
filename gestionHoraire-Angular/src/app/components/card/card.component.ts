@@ -18,7 +18,7 @@ export class CardComponent {
   @Input() subtitles!: string[];
   @Input() pElementsContent!: string[];
   @Input() wantButtons: boolean = true;
-  @Input() imageSrc!: string;
+  @Input() imageSrc: string = 'assets/images/intervention.png';
 
   @Output() deleteConfirmed = new EventEmitter<void>();
   @Output() edit = new EventEmitter<void>();

@@ -16,6 +16,9 @@ export class SidenavComponent implements OnInit {
 
   constructor(private keycloakService: KeycloakService) { }
   userName!: string;
+  userRole: string = localStorage.getItem('role') || '';
+  dashboardLink: string = this.userRole === "ADMINISTRATEUR" ? "/adminDashboard" : "/enseignantDashboard";
+
   ngOnInit(): void {
     this.userName = localStorage.getItem('username') || 'le nom d\'utilisateur';
   }

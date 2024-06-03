@@ -11,7 +11,7 @@
     <div class="sidenav-content">
         <ul>
             <li>
-                <a routerLink="/adminDashboard">
+                <a [routerLink]="dashboardLink">
                     <div class="side-li" routerLinkActive="activeLink">
                         <mat-icon> 
                             view_list
@@ -22,30 +22,32 @@
                     </div>
                 </a>
             </li>
-            <li>
-                <a routerLink="/addIntervention">
-                    <div class="side-li" routerLinkActive="activeLink">
-                        <mat-icon> 
-                            add
-                        </mat-icon>
-                        <div class="side-a-text">
-                            Creér une intervention
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                <a routerLink="/modules">
-                    <div class="side-li" routerLinkActive="activeLink">
-                        <mat-icon> 
-                            ballot
-                        </mat-icon>
-                        <div class="side-a-text">
-                            Les modules
-                        </div>
-                    </div>
-                </a>
-            </li>
+@if(userRole === "ADMINISTRATEUR"){
+    <li>
+        <a routerLink="/addIntervention">
+            <div class="side-li" routerLinkActive="activeLink">
+                <mat-icon> 
+                    add
+                </mat-icon>
+                <div class="side-a-text">
+                    Creér une intervention
+                </div>
+            </div>
+        </a>
+    </li>
+    <li>
+        <a routerLink="/modules">
+            <div class="side-li" routerLinkActive="activeLink">
+                <mat-icon> 
+                    ballot
+                </mat-icon>
+                <div class="side-a-text">
+                    Les modules
+                </div>
+            </div>
+        </a>
+    </li>
+}
         </ul>
     </div>
     <mat-divider class="divider"></mat-divider> 

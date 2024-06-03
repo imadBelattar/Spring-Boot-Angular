@@ -1,0 +1,12 @@
+<div class="dashboard-container">
+    @for (interv of interventions; track $index){
+            <app-card 
+                      [title] = "interv.intitule"
+                      [subtitles]="['Module: '+ interv.module.intitule]" 
+                      [pElementsContent]="['Volume de cours: '+ interv.vhCoursInterv + ' hr', 'Volume de TD: '+interv.vhTDInterv + ' hr','Volume de TP: '+interv.vhTPInterv + ' hr', 'Evaluation: '+interv.evaluationInterv]"
+                      [id]="interv.enseignant.email + interv.module.intitule"
+                      [wantButtons]="false"
+                      >
+            </app-card>
+    }
+</div>

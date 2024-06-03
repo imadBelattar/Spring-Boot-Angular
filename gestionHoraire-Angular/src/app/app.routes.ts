@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/adminstrateur/dashboard/dashboa
 import { authGuard } from './guards/auth.guard';
 import { CreateInterventionComponent } from './intervention/intervention.component';
 import { ModuleManagementComponent } from './components/module-management/module-management.component';
+import { EnseigantDashboardComponent } from './components/enseignant/enseigant-dashboard/enseigant-dashboard.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full"},
@@ -30,7 +31,11 @@ export const routes: Routes = [
             {
                 path: "modules",
                 component: ModuleManagementComponent,
-            }
+            },
+            {
+                path: "enseignantDashboard",
+                component: EnseigantDashboardComponent,
+            },
         ]
     },
     { path: "**", component:  PageNotFoundComponent},

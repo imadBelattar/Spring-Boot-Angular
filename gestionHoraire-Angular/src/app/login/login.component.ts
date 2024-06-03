@@ -31,6 +31,10 @@ export class LoginComponent implements OnInit {
     if(localStorage.getItem('username')) {
       localStorage.removeItem('username');
     }
+    if(localStorage.getItem('userEmail')) {
+      localStorage.removeItem('userEmail');
+    }
+    localStorage.setItem('userEmail', this.userEmail);
     localStorage.setItem('username', this.userFullName);
     this.fetchUserRole();
   }
@@ -42,6 +46,10 @@ export class LoginComponent implements OnInit {
         data => {
           this.role = data;
           console.log("User role fetched successfully:", this.role);
+          if(localStorage.getItem('role')) {
+            localStorage.removeItem('role');
+          }
+          localStorage.setItem('role', this.role);
           if (this.role === "ADMINISTRATEUR") {
             this.router.navigate(['/adminDashboard']);
           } else if (this.role === "ENSEIGNANT") {
