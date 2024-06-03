@@ -37,7 +37,7 @@ The class diagram illustrates the structure of the entities involved in the proj
 The project comes pre-configured with database settings. Follow these steps to create the database:
 
 1. Make sure you have MySQL installed on your system.
-2. Connect to your MySQL server using your preferred MySQL client (e.g., MySQL Workbench).
+2. Connect to your MySQL server using your preferred MySQL client (e.g., MySQL Workbench, XAMPP).
 3. Execute the following SQL script to create the database:
 
 ```sql
@@ -47,7 +47,13 @@ CREATE DATABASE gestionchargehoraire;
 
 ## Frontend Setup
 
-The Angular frontend for this project is under development. Once available, follow the instructions in the `gestionHoraire-Angular` folder to set up and run the frontend.
+The Angular frontend for this project is ready for setup. Follow these steps to set up and run the frontend:
+
+1. Navigate to the `gestionHoraire-Angular` folder.
+2. Open a terminal or command prompt in this directory.
+3. Run `npm install` to install all required dependencies.
+4. Once installation is complete, run `ng serve --open` to start the Angular server and automatically open the application in your default web browser.
+
 
 ## Contributors
 
