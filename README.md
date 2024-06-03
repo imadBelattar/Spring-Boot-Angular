@@ -19,6 +19,12 @@ The project aims to provide a comprehensive system for managing various tasks re
 - **User Authentication**: Login functionality with authentication and authorization to ensure secure access to the system.
 - **CRUD Operations**: Support for creating, reading, updating, and deleting interventions, filieres, modules, and enseignants.
 
+## Administrator Dashboard
+
+When an administrator logs into the application, they are greeted with a comprehensive dashboard that allows them to manage all aspects of the system. Below is an example of the administrator dashboard:
+
+![Administrator Dashboard](images/adminDashboard.jpg)
+
 
 ## Class Diagram
 
@@ -54,6 +60,7 @@ The Angular frontend for this project is ready for setup. Follow these steps to 
 3. Run `npm install` to install all required dependencies.
 4. Once installation is complete, run `ng serve --open` to start the Angular server and automatically open the application in your default web browser.
 
+//you can fit the example of the admin dashboard (the image is at images/adminDashboard.jpg) when logged in as administartor
 
 ## Contributors
 
