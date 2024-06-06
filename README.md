@@ -60,7 +60,7 @@ CREATE DATABASE gestionchargehoraire;
 ```
 ## Keycloak
 
-### Keycloak Angular App Flow Exchange
+### Keycloak - Angular Flow Exchange
 
 ![Keycloak Angular App Flow Exchange](images/keycloak-angularApp.png)
 
