@@ -58,25 +58,32 @@ The project comes pre-configured with database settings. Follow these steps to c
 ```sql
 CREATE DATABASE gestionchargehoraire;
 ```
+## Keycloak
 
-# Keycloak Setup Instructions
+### Keycloak Angular App Flow Exchange
+
+![Keycloak Angular App Flow Exchange](images\keycloak-angularApp)
+
+The flow exchange between Keycloak and Angular ensures secure authentication and authorization for users interacting with the application.
+
+### Keycloak Setup Instructions
 
 To ensure that your application works properly with Keycloak, follow these steps:
 
-## Step 1: Install Docker
+#### Step 1: Install Docker
 
 Download and install Docker from the official Docker website:
 
 [Download Docker](https://www.docker.com/products/docker-desktop)
 
-## Step 2: Download Keycloak Image
+#### Step 2: Download Keycloak Image
 
 Download the Keycloak image from Docker Hub by running the following command in your terminal:
 
 ```sh
 docker pull quay.io/keycloak/keycloak:latest
 ```
-## Step 3: Run Keycloak using Docker Compose
+#### Step 3: Run Keycloak using Docker Compose
 
 Create a docker-compose.yml file to define and run the Keycloak container. This file will also map the necessary ports.
 
@@ -95,54 +102,54 @@ services:
       - start-dev
 ```
 
-## Run the Docker Compose Setup
+#### Run the Docker Compose Setup
 
 ```sh
 docker-compose up -d
 ```
 
-## Step 4: Access Keycloak
+#### Step 4: Access Keycloak
 
 Once the container is running, go to the following URL to access the Keycloak admin console:  
 [http://localhost:8080](http://localhost:8080)
 
 Log in with the admin username and password specified in the `docker-compose.yml` file (admin/admin).
 
-## Step 5: Configure Keycloak
+#### Step 5: Configure Keycloak
 
-### Create a Realm
+#### Create a Realm
 
 In the Keycloak admin console, click on the Master dropdown in the top-left corner and select **Add realm**.  
 Name the realm `gestion-intervention`.
 
-### Create a Client
+#### Create a Client
 
 Go to the **Clients** tab in your new realm.  
 Click **Create** to add a new client.  
 Fill in the necessary details such as Client ID, Root URL, Redirect URIs, etc. as per your application's requirements.
 
-### Create Roles
+#### Create Roles
 
 Go to the **Roles** tab in your new realm.  
 Create two roles:
 - `ADMINISTRATEUR`
 - `ENSEIGNANT`
 
-### Create Users and Assign Roles
+#### Create Users and Assign Roles
 
 Go to the **Users** tab.  
 Click **Add user** and fill in the required details for each user.  
 Create two users: one for `enseignant` and one for `administrateur`.  
 After creating a user, go to the **Role Mappings** tab for that user and assign the appropriate role (either `ADMINISTRATEUR` or `ENSEIGNANT`).
 
-## Configure Database Integration
+### Configure Database Integration
 
 Make sure that the users created in Keycloak are also stored in your `gestionchargehoraire` database.  
 This might require custom integration logic in your backend application to sync users between Keycloak and your database.
 
 ![Keycloak Users Example](images/keycloak-users-example.jpg)
 
-## Final Note
+### Final Note
 
 Ensure that all configurations are saved and the realm is correctly set up with the specified roles and users.  
 Verify that your application can communicate with Keycloak for authentication and authorization purposes.
