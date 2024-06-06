@@ -62,7 +62,7 @@ CREATE DATABASE gestionchargehoraire;
 
 ### Keycloak Angular App Flow Exchange
 
-![Keycloak Angular App Flow Exchange](images\keycloak-angularApp.png)
+![Keycloak Angular App Flow Exchange](images/keycloak-angularApp.png)
 
 The flow exchange between Keycloak and Angular ensures secure authentication and authorization for users interacting with the application.
 
